@@ -157,7 +157,7 @@ function getPageProcessingOptions(
   baseOptions: ConversionOptions,
   isCoverPage: boolean
 ): ConversionOptions {
-  if (!isCoverPage) {
+  if (!isCoverPage || baseOptions.firstPageIsCover === false) {
     return baseOptions
   }
 
@@ -498,7 +498,7 @@ async function convertCbzToXtc(
       // Continue conversion without metadata.
     }
   }
-  moveCoverToFront(imageFiles, metadata)
+  if (options.firstPageIsCover !== false) moveCoverToFront(imageFiles, metadata)
 
   const { encodedPages, mappingCtx, sampledPreviews } = await processArchiveSourcePages(
     imageFiles.length,
@@ -584,7 +584,7 @@ async function convertCbrToXtc(
       // Continue conversion without metadata.
     }
   }
-  moveCoverToFront(imageFiles, metadata)
+  if (options.firstPageIsCover !== false) moveCoverToFront(imageFiles, metadata)
 
   const { encodedPages, mappingCtx, sampledPreviews } = await processArchiveSourcePages(
     imageFiles.length,

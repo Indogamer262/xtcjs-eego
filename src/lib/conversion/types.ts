@@ -12,6 +12,7 @@ export interface ConversionOptions {
   horizontalMargin: number
   verticalMargin: number
   orientation: 'landscape' | 'portrait'
+  firstPageIsCover: boolean
   coverPortrait: boolean
   landscapeFlipClockwise: boolean
   showProgressPreview: boolean

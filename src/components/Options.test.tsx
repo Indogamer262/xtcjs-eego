@@ -17,7 +17,9 @@ function deviceSelectMarkup(markup: string) {
 
 function renderPdfOptions(
   orientation: ConversionOptions['orientation'],
-  device: ConversionOptions['device'] = 'X4'
+  device: ConversionOptions['device'] = 'X4',
+  firstPageIsCover = true,
+  fileType: 'cbz' | 'pdf' = 'pdf'
 ) {
   const options: ConversionOptions = {
     device,
@@ -30,6 +32,7 @@ function renderPdfOptions(
     horizontalMargin: 0,
     verticalMargin: 0,
     orientation,
+    firstPageIsCover,
     coverPortrait: false,
     landscapeFlipClockwise: false,
     showProgressPreview: false,
@@ -37,8 +40,22 @@ function renderPdfOptions(
     videoFps: 1,
   }
 
-  return renderToStaticMarkup(<Options options={options} onChange={() => {}} fileType="pdf" />)
+  return renderToStaticMarkup(<Options options={options} onChange={() => {}} fileType={fileType} />)
 }
+
+test('disables cover orientation when manga cover handling is off', () => {
+  const markup = renderPdfOptions('landscape', 'X4', false, 'cbz')
+  expect(markup.match(/<input[^>]*id="coverPortrait"[^>]*>/)?.[0]).toContain('disabled')
+})
+
+test('keeps cover orientation available for manga covers and PDFs', () => {
+  for (const markup of [
+    renderPdfOptions('landscape', 'X4', true, 'cbz'),
+    renderPdfOptions('landscape', 'X4', false, 'pdf'),
+  ]) {
+    expect(markup.match(/<input[^>]*id="coverPortrait"[^>]*>/)?.[0]).not.toContain('disabled')
+  }
+})
 
 test('offers two-column paper splitting only in portrait PDF mode', () => {
   expect(renderPdfOptions('portrait')).toContain('Two-column paper (4 pages)')
