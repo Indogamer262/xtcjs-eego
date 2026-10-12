@@ -140,6 +140,7 @@ export function Options({ options, onChange, fileType = 'cbz' }: OptionsProps) {
                 type="checkbox"
                 id="coverPortrait"
                 checked={options.coverPortrait}
+                disabled={fileType === 'cbz' && options.firstPageIsCover === false}
                 onChange={(e) => onChange({ ...options, coverPortrait: e.target.checked })}
               />
               <span>Keep cover portrait</span>
@@ -279,6 +280,24 @@ export function Options({ options, onChange, fileType = 'cbz' }: OptionsProps) {
             <div className="section-header">
               <h2>Advanced</h2>
             </div>
+
+            {fileType === 'cbz' && (
+              <div className="option option-checkbox">
+                <label htmlFor="firstPageIsCover" className="checkbox-label">
+                  <input
+                    type="checkbox"
+                    id="firstPageIsCover"
+                    checked={options.firstPageIsCover !== false}
+                    aria-describedby="first-page-cover-note"
+                    onChange={(e) => onChange({ ...options, firstPageIsCover: e.target.checked })}
+                  />
+                  <span>Treat first page as cover</span>
+                </label>
+                <InfoNote id="first-page-cover-note">
+                  Turn off for chapters without a cover. The first page will use your normal orientation and page split.
+                </InfoNote>
+              </div>
+            )}
 
             <div className="option">
               <label htmlFor="contrast">Contrast</label>
