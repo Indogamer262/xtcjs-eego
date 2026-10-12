@@ -146,7 +146,7 @@
   display: none;
 }
 
-.spread-notice-slot:not(:empty) {
+.option-checkbox .info-note {
   margin-top: var(--space-sm);
 }
 
