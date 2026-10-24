@@ -29,17 +29,17 @@ jobs:
           <html lang="en">
             <head>
               <meta charset="utf-8">
-              <meta http-equiv="refresh" content="0; url=https://xtcjs.app/">
-              <link rel="canonical" href="https://xtcjs.app/">
+              <meta http-equiv="refresh" content="0; url=https://xtcjs.christianah.my.id/">
+              <link rel="canonical" href="https://xtcjs.christianah.my.id/">
               <title>Redirecting...</title>
               <script>
                 (function () {
-                  window.location.replace("https://xtcjs.app/");
+                  window.location.replace("https://xtcjs.christianah.my.id/");
                 })();
               </script>
             </head>
             <body>
-              <p>Redirecting to <a href="https://xtcjs.app/">xtcjs.app</a>...</p>
+              <p>Redirecting to <a href="https://xtcjs.christianah.my.id/">xtcjs.christianah.my.id</a>...</p>
             </body>
           </html>
           EOF
